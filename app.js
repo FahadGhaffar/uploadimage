@@ -8,9 +8,9 @@ const fileUpload = require('express-fileupload');
 // USE V2
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME || "dxfxudotq",
-  api_key: process.env.CLOUD_API_KEY || "389255486681239",
-  api_secret: process.env.CLOUD_API_SECRET || "FF2XRZb7i9JlIEj-sxhLa_WrCI0",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
 });
 // database
 const connectDB = require('./db/connect');
@@ -40,7 +40,7 @@ const port = process.env.PORT || 5000;
 
 const start = async () => {
   try {
-    await connectDB("mongodb+srv://FahadGhaffar:Mongodb54321@uploadphoto.hlqhvxk.mongodb.net/UploadPhoto?retryWrites=true&w=majority");
+    await connectDB(process.env.MONGO_URL);
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
